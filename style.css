@@ -1,4 +1,11 @@
+* {
+    color: white;
+}
+
 body {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+
     min-height: 100vh;
     max-height: 100vh;
 
@@ -10,4 +17,27 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: +100%;
+}
+
+article {
+    margin-left: 7vw;
+    margin-top: 20vh;
+}
+
+h1 {
+    font-family: Rubik;
+    font-size: 10vh;
+
+    margin: 0;
+}
+
+.description {
+    font-family: Alef;
+    font-size: 4vh;
+
+    margin-top: 4vh;
+}
+
+p {
+    margin: 0;
 }
