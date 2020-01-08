@@ -41,3 +41,30 @@ h1 {
 p {
     margin: 0;
 }
+
+aside {
+    justify-self: flex-end;
+
+    margin-top: 20vh;
+    margin-right: 7vw;
+}
+
+a {
+    font-family: Rubik;
+    font-size: 6vh;
+
+    text-decoration: none;
+    margin-left: 4vw;
+}
+
+a:hover {
+    background-color: 0;
+
+    background-image: url("data/clouds.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+::selection {
+    background-color: black;
+}
