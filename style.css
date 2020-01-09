@@ -4,6 +4,15 @@
 
 body {
     display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.home {
+    display: grid;
     grid-template-columns: 2fr 3fr;
 
     min-height: 100vh;
@@ -17,6 +26,18 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: +100%;
+}
+
+.aboutme {
+    background-color: black;
+}
+
+.projects {
+    background-color: rebeccapurple;
+}
+
+.contacts {
+    background-color: aquamarine;
 }
 
 article {
@@ -49,14 +70,23 @@ aside {
     margin-right: 7vw;
 }
 
-a {
+button {
     font-family: Rubik;
     font-size: 6vh;
 
     text-decoration: none;
     margin-left: 4vw;
+
+    background: none;
+    border: none;
+    outline: none;
 }
 
 ::selection {
-    background-color: black;
+    /* background-color: black; */
+    background: none;
 }
+
+::-webkit-scrollbar {
+    width: 0;
+  }
