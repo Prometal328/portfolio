@@ -1,84 +1,59 @@
 window.addEventListener('resize', () => location.reload());
 
-const minRadius = 10, maxRadius = 50;
+const border = 10;
 
-class Orb {
-    constructor(radius, x, y) {
-        this.radius = radius;
-        this.x = x;
-        this.y = y;
-
-        this.xAcceleration = random(-1, 1);
-        this.yAcceleration = random(-1, 1);
-
-        this.accelerationCounter = 0;
-        this.accelerationFloor = random(100, 200);
+class Dot {
+    constructor() {
+        this.x = random(border, width - border);
+        this.y = random(border, height - border);
     }
 
-    display() {
-        fill(map(this.radius, minRadius, maxRadius, 0, 255))
-        noStroke();
-        ellipse(this.x, this.y, this.radius, this.radius);
-    }
+    connect(alpha, beta) {
+        let alphaDistance = Math.sqrt(Math.pow(alpha.x - this.x, 2) + Math.pow(alpha.y - this.y, 2));
+        let betaDistance = Math.sqrt(Math.pow(beta.x - this.x, 2) + Math.pow(beta.y - this.y, 2));
 
-    connect(orb) {
-        let distance = Math.sqrt(Math.pow(this.x - orb.x, 2) + Math.pow(this.y - orb.y, 2));
-        
-        if (distance < 100 && distance != 0) {
-            stroke(255);
-            strokeWeight(map(distance, 1, 100, 5, 1))
-            line(this.x, this.y, orb.x, orb.y);
+        if (alphaDistance < 300 && betaDistance < 300) {
+            noStroke();
+            fill(255, 255, 255, 5);
+            triangle(this.x, this.y, alpha.x, alpha.y, beta.x, beta.y);
         }
-    }
-
-    updateAcceleration() {
-        this.xAcceleration = random(-1, 1);
-        this.yAcceleration = random(-1, 1);
     }
 
     move() {
-        if (this.x >= 0 && this.x <= width) {
-            this.x += this.xAcceleration;
+        if (this.x > border && this.x < width - border) {
+            this.x += random(-1, 1);
         } else {
-            this.xAcceleration *= -1;
-            this.accelerationCounter = 0;
+            this.x = random(border, width - border);
         }
 
-        if (this.y >= 0 && this.y <= height) {
-            this.y += this.yAcceleration;
+        if (this.y > border && this.y < height - border) {
+            this.y += random(-1, 1);
         } else {
-            this.yAcceleration *= -1;
-            this.accelerationCounter = 0;
-        }
-
-        this.accelerationCounter++;
-        if (this.accelerationCounter == this.accelerationFloor) {
-            this.updateAcceleration();
-            this.accelerationCounter = 0;
+            this.y = random(border, height - border);
         }
     }
 };
 
-let orbs = []
+let dots = [] 
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    let dotsCount = random(30, 40);
 
-    let orbsCount = random(100, 250);
-
-    for (_ = 0; _ < orbsCount; _++) {
-        orbs.push(new Orb(random(minRadius, maxRadius), random(width), random(height)));
+    for (_ = 0; _ < dotsCount; _++) {
+        dots.push(new Dot());
     }
 }
 
 function draw() {
     background(0);
 
-    orbs.forEach(element => {
-        element.display();
-        element.move();
-        orbs.forEach(comparator => {
-            element.connect(comparator);
+    dots.forEach(alpha => {
+        dots.forEach(beta => {
+            dots.forEach(gamma => {
+                alpha.connect(beta, gamma);
+                alpha.move();
+            });
         });
     });
 }
