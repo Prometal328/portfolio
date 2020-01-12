@@ -70,9 +70,9 @@ class Triangle {
         this.gamma = new Point();
         this.gamma.x += increment;
 
-        this.color = color(251, 126, 105, random(10, 20));
+        this.color = color(251, 126, 105, random(30, 40));
         if (random(-1, 1) > 0) {
-            this.color = color(31, 44, 99, random(10, 20));
+            this.color = color(31, 44, 99, random(30, 40));
         }
     }
 
@@ -94,7 +94,7 @@ let triangles = []
 function setup() {
     createCanvas(windowWidth, windowHeight + 1);
 
-    for (_ = 0; _ < 10; _++) {
+    for (_ = 0; _ < 15; _++) {
         triangles.push(new Triangle());
     }
 }

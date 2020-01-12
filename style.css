@@ -29,6 +29,9 @@ body {
 }
 
 .aboutme {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+
     background: none;
 }
 
@@ -45,6 +48,15 @@ body {
 article {
     margin-left: 7vw;
     margin-top: 20vh;
+}
+
+.biography {
+    align-self: center;
+    justify-self: center;
+    /* margin-right: 1vw; */
+    /* margin-top: 2vh; */
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -104,4 +116,18 @@ iframe {
     margin: 0;
     padding: 0;
     border: none;
+}
+
+img {
+    justify-self: center;
+    align-self: center;
+
+    height: 70vh;
+}
+
+.biography-description {
+    margin-top: 5vh;
+    font-size: 3vh;
+
+    max-width: 50vw;
 }
