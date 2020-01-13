@@ -1,41 +1,85 @@
 window.addEventListener('resize', () => location.reload());
 
-const border = 100;
+let border;
 
-class Particle {
+class HorizontalLine {
     constructor() {
-        this.x = random(border, (width - border) * 0.5);
-        this.y = random(border, (height - border) * 0.5);
+        this.x = random(border, (width - border));
+        this.y = border;
 
-        this.length = random(border, height - border);
-        this.orientation = random(-1, 1);
-
-        this.acceleration = random(3, -3);
-        this.travel = 0;
-        this.maxTravel = random(100, 400);
+        this.acceleration = random(-1, 1);
+        this.weight = random(1, 5);
     }
 
     display() {
-        stroke(map(this.length, border, height - border, 10, 245));
-        strokeWeight(map(this.length, border, height - border, 10, 1));
-
-        line(this.x, this.y);
+        stroke(map(this.weight, 1, 5, 10, 100), 55, 55, 50);
+        strokeWeight(this.weight);
+        line(this.x, this.y, this.x, height - border);
     }
 
     move() {
+        this.x += this.acceleration;
+
+        if (this.acceleration < 0 && this.x < border) {
+            this.acceleration *= random(-2, -0.5);
+        }
+
+        if (this.acceleration > 0 && this.x > width - border) {
+            this.acceleration *= random(-2, -0.5);
+        }
     }
 }
 
-let particles = []
+class VerticallLine {
+    constructor() {
+        this.y = random(border, (height - border));
+        this.x = border;
+
+        this.acceleration = random(-1, 1);
+        this.weight = random(1, 5);
+    }
+
+    display() {
+        stroke(map(this.weight, 1, 5, 10, 100), 55, 55, 50);
+        strokeWeight(this.weight);
+        line(this.x, this.y, width - border, this.y);
+    }
+
+    move() {
+        this.y += this.acceleration;
+
+        if (this.acceleration < 0 && this.y < border) {
+            this.acceleration *= random(-2, -0.5);
+        }
+
+        if (this.acceleration > 0 && this.y > height - border) {
+            this.acceleration *= random(-2, -0.5);
+        }
+    }
+}
+
+let lines = []
 
 function setup() {
     createCanvas(windowWidth, windowHeight + 1);
 
-    for (_ = 0; _ < 50; _++) {
-        particles.push(new Particle());
+    border = windowWidth * 0.03;
+
+    for (_ = 0; _ < 30; _++) {
+        let lineType = random(-1, 1);
+        if (lineType > 0) {
+            lines.push(new HorizontalLine());
+        } else {
+            lines.push(new VerticallLine());
+        }
     }
 }
 
 function draw() {
     background(0);
+
+    lines.forEach(line => {
+        line.display();
+        line.move();
+    });
 }
