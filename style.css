@@ -41,8 +41,10 @@ body {
 }
 
 .contacts {
-    /* background-color: aquamarine; */
-    background-color: black;
+    background-image:  url("data/contacts-background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position-y: +100%; */
 }
 
 article {
