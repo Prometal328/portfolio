@@ -4,12 +4,22 @@ const border = 100;
 
 class Particle {
     constructor() {
-        this.x = random(border, width - border);
-        this.y = random(border, height - border);
-        this.radius = random(5, 10);
+        this.x = random(border, (width - border) * 0.5);
+        this.y = random(border, (height - border) * 0.5);
+
+        this.length = random(border, height - border);
+        this.orientation = random(-1, 1);
+
+        this.acceleration = random(3, -3);
+        this.travel = 0;
+        this.maxTravel = random(100, 400);
     }
 
     display() {
+        stroke(map(this.length, border, height - border, 10, 245));
+        strokeWeight(map(this.length, border, height - border, 10, 1));
+
+        line(this.x, this.y);
     }
 
     move() {
