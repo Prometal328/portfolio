@@ -41,10 +41,19 @@ body {
 }
 
 .contacts {
-    background-image:  url("data/contacts-background.svg");
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    /* background-image:  url("data/logo.svg"), url("data/contacts-background.svg"); */
+    background-image: url("data/contacts-background.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-position-y: +100%; */
+}
+
+.list {
+    align-self: center;
+    margin-left: 7vw;
+    margin-top: 17vh;
 }
 
 article {
@@ -55,8 +64,7 @@ article {
 .biography {
     align-self: center;
     justify-self: center;
-    /* margin-right: 1vw; */
-    /* margin-top: 2vh; */
+
     margin: 0;
     padding: 0;
 }
@@ -132,4 +140,21 @@ img {
     font-size: 3vh;
 
     max-width: 50vw;
+}
+
+.image {
+    width: 3vh;
+    height: 3vh;
+
+    margin-right: 1vw;
+}
+
+.element {
+    align-self: center;
+
+    font-family: Alef;
+    font-size: 4vh;
+
+    text-decoration: none;
+    color: white;
 }
