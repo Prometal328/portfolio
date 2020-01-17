@@ -37,15 +37,16 @@ body {
 
 .projects {
     /* background-color: rebeccapurple; */
-    background-color: black;
+    /* background-color: black; */
+    background: none;
 }
 
 .contacts {
     display: grid;
     grid-template-rows: 1fr 1fr;
 
-    /* background-image:  url("data/logo.svg"), url("data/contacts-background.svg"); */
-    background-image: url("data/contacts-background.svg");
+    background-image:  url("data/logo.svg"), url("data/contacts-background.svg");
+    /* background-image: url("data/contacts-background.svg"); */
     background-repeat: no-repeat;
     background-size: cover;
 }
